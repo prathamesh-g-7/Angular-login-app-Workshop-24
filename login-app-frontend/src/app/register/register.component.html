@@ -1,0 +1,93 @@
+<div class="login">
+  <div class="login_container">
+    <h1>Register</h1>
+
+    <form #userForm="ngForm">
+      <h5>Username</h5>
+      <input
+        type="text"
+        placeholder="Full Name"
+        name="username"
+        #name="ngModel"
+        required
+        minlength="3"
+        [(ngModel)]="userModel.username"
+      />
+      <small *ngIf="name.errors?.required && name.touched" class="danger"
+        >*Name is required</small
+      >
+
+      <h5>Email</h5>
+      <input
+        type="email"
+        placeholder="eg. abc@mail.com"
+        name="email"
+        #email="ngModel"
+        required
+        [(ngModel)]="userModel.email"
+        pattern="^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+"
+      />
+      <small *ngIf="email.errors?.required && email.touched" class="danger"
+        >*Email is required</small
+      >
+      <small
+        *ngIf="email.errors && email.errors.pattern && email.touched"
+        class="danger"
+        >*Email Invalid</small
+      >
+
+      <h5>Mobile</h5>
+      <input
+        type="number"
+        placeholder="10 digit mobile number"
+        name="mobile"
+        #mobile="ngModel"
+        [(ngModel)]="userModel.mobile"
+        pattern="\d{10}"
+      />
+      <small
+        *ngIf="mobile.errors && mobile.errors.pattern && mobile.touched"
+        class="danger"
+        >Mobile Number must contain 10 digits</small
+      >
+
+      <h5>Create Password</h5>
+      <input
+        type="password"
+        placeholder="min 8 characters"
+        name="createPassword"
+        #pass="ngModel"
+        [(ngModel)]="userModel.password"
+        pattern="(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$])[a-zA-Z0-9@#$]{8,13}"
+      />
+      <small *ngIf="pass.errors && pass.errors.pattern" class="danger"
+        >*Password must contain 1 Uppercase,Lowercase and Special character and
+        length must be greater than 7
+      </small>
+
+      <h5>Confirm Password</h5>
+      <input
+        type="password"
+        placeholder="same as above password"
+        name="confirmPassword"
+      />
+
+      <a
+        class="login_signinButton"
+        routerLink="/login"
+        routerLinkActive="activebutton"
+        (click)="onSubmit()"
+      >
+        Sign up
+      </a>
+      <h5 class="gotoLogin">
+        Have an account?
+        <a routerLink="/login" routerLinkActive="activebutton"
+          >Click to Login</a
+        >
+      </h5>
+    </form>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

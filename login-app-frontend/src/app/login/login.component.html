@@ -1,0 +1,25 @@
+<div class="login">
+  <div class="login_container">
+    <h1>Sign In</h1>
+
+    <form #userForm="ngForm">
+      <h5>Username</h5>
+      <input name="username" type="email" #name="ngModel" ngModel />
+      <h5>Password</h5>
+      <input name="password" type="password" #password="ngModel" ngModel />
+      <a
+        [routerLink]="isUserValid ? ['/succesful'] : []"
+        routerLinkActive="activebutton"
+        class="login_signinButton"
+        (click)="login(userForm.value)"
+        >Login</a
+      >
+      <h5 class="gotoLogin">
+        Don't have an account?
+        <a routerLink="/register" routerLinkActive="activebutton"
+          >Click to Register</a
+        >
+      </h5>
+    </form>
+  </div>
+</div>
